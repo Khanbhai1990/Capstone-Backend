@@ -1,31 +1,33 @@
-
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('user_rate', function(table){
+  return knex.schema.createTable('active_challenges', function(table){
       table.increments();
-      table.integer('user_id')
+      table.integer('userOne_id')
       .notNullable()
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
       .index();
-      table.integer('friend_id')
-      .notNullable()
+      table.integer('userTwo_id')
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
       .index();
-      table.integer('active_challenge_id')
-      .notNullable()
+      table.integer('userThree_id')
       .references('id')
-      .inTable('active_challenges')
+      .inTable('users')
       .onDelete('CASCADE')
       .index();
-      table.integer('day_rate').notNullable();
-      table.integer('rating').notNullable();
+      table.integer('challenge_id')
+      .notNullable()
+      .references('id')
+      .inTable('challenges')
+      .onDelete('CASCADE')
+      .index();
+      table.boolean('active').defaultsTo(true);
       table.timestamps(true, true);
   })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('user_rate');
+  return knex.schema.dropTable('active_challenges');
 };

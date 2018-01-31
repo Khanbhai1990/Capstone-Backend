@@ -10,8 +10,9 @@ exports.up = function(knex, Promise) {
       .index();
       table.integer('day').notNullable();
       table.string('video');
-      table.string('audio');
+      table.text('audio');
       table.string('image');
+      table.text('instructions');
       table.timestamps(true, true);
   })
 };

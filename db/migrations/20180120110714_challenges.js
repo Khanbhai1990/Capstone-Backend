@@ -8,8 +8,11 @@ exports.up = function(knex, Promise) {
       .inTable('users')
       .onDelete('CASCADE')
       .index();
-      table.string('challenge').notNullable();
-      table.boolean('active').defaultsTo(true);
+      table.string('paralax').notNullable();
+      table.string('description').notNullable();
+      table.string('tracker_name').notNullable();
+      table.string('challenge').notNullable().unique();
+      table.boolean('listed').defaultsTo(false);
       table.timestamps(true, true);
   })
 };

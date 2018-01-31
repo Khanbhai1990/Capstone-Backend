@@ -11,6 +11,28 @@ router.get('/:id', function(req, res) {
   knex('user_rate').select().where('id', req.params.id).then(user_rate => res.json(user_rate))
 });
 
+router.get('/ranking/:active', function(req,res) {
+  knex('active_challenges')
+    .where('id', req.params.active)
+    .select('userOne_id', 'userTwo_id', 'userThree_id')
+    .then((data) =>{
+      knex('users')
+        .select("name", "id")
+        .where('id', data[0].userOne_id)
+        .orWhere('id', data[0].userTwo_id)
+        .orWhere('id', data[0].userThree_id)
+        .then((result)=> res.json(result))
+    })
+})
+
+router.get('/acc/:active/:friend', function(req,res){
+    knex('user_rate')
+      .where('active_challenge_id', req.params.active)
+      .where('friend_id', req.params.friend)
+      .sum('rating')
+      .then((result)=> res.json(result))
+})
+
 router.post('/', function(req, res) {
   knex('user_rate').insert(req.body).then(() => {
     knex('user_rate').select().then(user_rate => res.json(user_rate))

@@ -10,6 +10,9 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res) {
   knex('challenges').select().where('id', req.params.id).then(challenges => res.json(challenges))
 });
+router.get('/mychallenges/:user_id', function(req, res) {
+  knex('challenges').select().where('user_id', req.params.user_id).then(challenges => res.json(challenges))
+});
 
 router.post('/', function(req, res) {
   knex('challenges').insert(req.body).then(() => {
