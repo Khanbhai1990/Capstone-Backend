@@ -12,8 +12,9 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+  console.log(req.body)
   knex('features').insert(req.body).then(() => {
-    knex('features').select().then(features => res.json(features))
+    knex('features').select().where({challenge_id: req.body.challenge_id}).then(features => res.json(features))
   });
 });
 

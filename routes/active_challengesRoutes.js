@@ -23,18 +23,28 @@ router.get('/:id', function(req, res) {
 //         .then(data => res.json(data))
 //     })
 // });
+//
+// router.get('/user_chall/:id', function(req, res) {
+//   knex('active_challenges')
+//     .where('userOne_id', req.params.id)
+//     .orWhere('userTwo_id', req.params.id)
+//     .orWhere('userThree_id', req.params.id)
+//     .then((active_challenges) => {
+//       knex('active_challenges')
+//         .select("active_challenges.active", "active_challenges.challenge_id", "challenges.challenge", "challenges.description", "active_challenges.id", "challenges.paralax")
+//         .join('challenges', active_challenges[0].challenge_id, 'challenges.id')
+//         .then(data => res.json(data))
+//     })
+// });
 
 router.get('/user_chall/:id', function(req, res) {
   knex('active_challenges')
     .where('userOne_id', req.params.id)
     .orWhere('userTwo_id', req.params.id)
     .orWhere('userThree_id', req.params.id)
-    .then((active_challenges) => {
-      knex('active_challenges')
-        .select("active_challenges.active", "active_challenges.challenge_id", "challenges.challenge", "challenges.description", "active_challenges.id", "challenges.paralax")
-        .join('challenges', active_challenges[0].challenge_id, 'challenges.id')
-        .then(data => res.json(data))
-    })
+    .select("active_challenges.active", "active_challenges.challenge_id", "challenges.challenge", "challenges.description", "active_challenges.id", "challenges.paralax")
+    .join('challenges', "challenge_id", 'challenges.id')
+    .then(data => res.json(data))
 });
 
 router.get('/complete/:challenge/:day', function(req, res) {
@@ -56,7 +66,7 @@ router.get('/complete/:challenge/:day', function(req, res) {
 
 router.post('/', function(req, res) {
   knex('active_challenges').insert(req.body).then(() => {
-    knex('active_challenges').select().then(active_challenges => res.json(active_challenges))
+    knex('active_challenges').select().then(active_challenges => res.json(active_challenges.data[data.length-1]))
   });
 });
 
