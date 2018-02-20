@@ -6,7 +6,6 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('challenges').insert([
         {
-          id:1,
           user_id: 1,
           paralax: 'http://nowdaily.com/wp-content/uploads/21-yoga-poses-cover-image.jpg?ffc0e9',
           challenge:"Aubrey Lincoln's Yoga Challenge (with full content)",
@@ -23,8 +22,8 @@ exports.seed = function(knex, Promise) {
         {
           user_id: 4,
           paralax: 'https://www.spinlister.com/blog/wp-content/uploads/2016/12/chicago-lakefront-trail-1.jpg',
-          challenge:"Tour de Chicago!!",
-          description:"Experience the 10 Best Bike Routes in Chicago (filler)",
+          challenge:"Tour de Chicago!! (filler)",
+          description:"Experience the 10 Best Bike Routes in Chicago",
           tracker_name:"Distance by Miles"
         },
         {
