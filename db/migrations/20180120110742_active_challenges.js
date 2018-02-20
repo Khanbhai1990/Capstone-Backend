@@ -24,6 +24,7 @@ exports.up = function(knex, Promise) {
       .onDelete('CASCADE')
       .index();
       table.boolean('active').defaultsTo(true);
+      table.string("startTime").defaultsTo("1518941230");
       table.timestamps(true, true);
   })
 };

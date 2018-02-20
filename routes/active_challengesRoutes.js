@@ -4,7 +4,11 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  knex('active_challenges').select().then(active_challenges => res.json(active_challenges))
+  knex('active_challenges').select().then(active_challenges => {
+    res.json(active_challenges)
+    let obj = active_challenges[0].startTime
+    console.log(obj.day)
+  })
 });
 
 router.get('/:id', function(req, res) {
@@ -51,6 +55,7 @@ router.get('/complete/:challenge/:day', function(req, res) {
   knex('features')
     .select()
     .join('challenges', 'features.challenge_id', 'challenges.id')
+    .join('active_challenges', "active_challenges.challenge_id", 'challenges.id'  )
     .where('features.challenge_id', req.params.challenge)
     .where('features.day', req.params.day)
     .then(data => res.json(data))
