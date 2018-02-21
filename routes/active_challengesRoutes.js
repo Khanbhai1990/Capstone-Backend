@@ -51,19 +51,20 @@ router.get('/user_chall/:id', function(req, res) {
     .then(data => res.json(data))
 });
 
-router.get('/complete/:challenge/:day', function(req, res) {
+router.get('/complete/:challenge/:day/:active', function(req, res) {
   knex('features')
     .select()
     .join('challenges', 'features.challenge_id', 'challenges.id')
     .join('active_challenges', "active_challenges.challenge_id", 'challenges.id'  )
     .where('features.challenge_id', req.params.challenge)
     .where('features.day', req.params.day)
+    .where('active_challenges.id', req.params.active)
     .then(data => res.json(data))
 });
 
 // router.get('/active/:id', function(req,res){
 //     knex('active_challenges')
-//       .select("active_challenges.challenge_id")
+//       .select("active_challenges.challenge1_id")
 //       .then((chall_id)=> {
 //           knex('')
 //       })
