@@ -18,8 +18,8 @@ router.post('/', function(req, res) {
   });
 });
 
-router.patch('/:id', function(req, res) {
-  knex('features').update(req.body).where('id', req.params.id).then(function() {
+router.patch('/:id/:day', function(req, res) {
+  knex('features').update(req.body).where('id', req.params.id).where('day', req.params.day).then(function() {
     knex('features').select().then(features => res.json(features))
   });
 });

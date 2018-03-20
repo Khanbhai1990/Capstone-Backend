@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
       return knex('challenges').insert([
         {
           user_id: 1,
-          paralax: 'http://nowdaily.com/wp-content/uploads/21-yoga-poses-cover-image.jpg?ffc0e9',
+          paralax: 'http://boiseyogainstructor.com/wp-content/uploads/2014/12/yoga-sunset-meditate.jpg',
           challenge:"Aubrey Lincoln's Yoga Challenge (with full content)",
           description:"Give us 10 days to change your life",
           tracker_name:"Calories Intake"

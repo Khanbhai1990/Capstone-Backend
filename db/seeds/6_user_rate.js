@@ -5,6 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('user_rate').insert([
+        {user_id: 1, active_challenge_id: 1, day_rate: 1, friend_id:2, rating: Math.floor(Math.random() * Math.floor(6))},
+        {user_id: 1, active_challenge_id: 1, day_rate: 1, friend_id:3, rating: Math.floor(Math.random() * Math.floor(6))},
         {user_id: 1, active_challenge_id: 1, day_rate: 2, friend_id:2, rating: Math.floor(Math.random() * Math.floor(6))},
         {user_id: 1, active_challenge_id: 1, day_rate: 2, friend_id:3, rating: Math.floor(Math.random() * Math.floor(6))},
         {user_id: 1, active_challenge_id: 1, day_rate: 3, friend_id:2, rating: Math.floor(Math.random() * Math.floor(6))},

@@ -33,7 +33,7 @@ router.post('/login', function(req, res) {
           token
         })
       } else {
-        res.status(401).send('Invalid Login Bitch')
+        res.status(401).send('Invalid Login')
       }
     })
 })
