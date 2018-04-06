@@ -3,7 +3,7 @@
 ## Basic Installation
 Install all the dependencies with npm install
 
-run the server with the command "nodemon" in the terminal
+run the server with the command "nodemon" in the terminal (run this command in functions directory)
 
 
 ## Detailed Installation
